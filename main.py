@@ -56,6 +56,10 @@ def get_url_id(url: str) -> str:
         return create_url(formatted_url)
     return url_data["_id"]
 
+@app.get("/")
+async def root():
+    return {"Version": "API v1.0.0"}
+
 @app.post("/register")
 def register_url(request: URLRequest):
     """Register a URL for tracking and return an ID."""
