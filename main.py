@@ -3,10 +3,16 @@ from pydantic import BaseModel
 from uuid import uuid4
 from datetime import datetime, timedelta
 from pymongo import MongoClient
-from secret import MONGO_URI
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
 app = FastAPI()
 
 # MongoDB connection
+MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(MONGO_URI)
 db = client["view_counter"]
 urls_collection = db["urls"]
