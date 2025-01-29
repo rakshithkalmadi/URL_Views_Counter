@@ -35,6 +35,7 @@ class URLBody(BaseModel):
 
 def format_url(url: str) -> str:
     """Format URL by removing protocol, www, and trailing slashes."""
+    if "localhost" in url:return "localhost"
     # Remove protocol
     url = url.replace("http://", "").replace("https://", "")
     # Remove trailing slashes
