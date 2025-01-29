@@ -5,12 +5,19 @@ from datetime import datetime, timedelta
 from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
+from starlette.middleware.cors import CORSMiddleware
 
 # Load environment variables
 load_dotenv()
 
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 # MongoDB connection
 MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(MONGO_URI)
